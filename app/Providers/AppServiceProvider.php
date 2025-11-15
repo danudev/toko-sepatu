@@ -9,6 +9,8 @@ use App\Repositories\Contracts\CartRepositoryInterface;
 use App\Repositories\Eloquent\CartRepository;
 use App\Repositories\Contracts\OrderRepositoryInterface;
 use App\Repositories\Eloquent\OrderRepository;
+use App\Services\Payment\PaymentInterface;
+use App\Services\Payment\MidtransPaymentService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -21,6 +23,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(CartRepositoryInterface::class, CartRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+
+         // Payment service binding
+        $this->app->bind(PaymentInterface::class, MidtransPaymentService::class);
     }
 
     /**
